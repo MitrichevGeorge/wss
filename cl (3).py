@@ -1,5 +1,5 @@
 # cl.py
-# Screen capture and streaming client for ROSA MOS Linux (no admin privileges)
+# Screen capture and streaming client for ROSA MOS Linux (using venv, no admin privileges)
 import asyncio
 import base64
 import cv2
@@ -8,12 +8,12 @@ import time
 try:
     import mss
 except ImportError:
-    print("Error: 'mss' library not found. Install it with: pip3 install --user mss")
+    print("Error: 'mss' library not found. Activate your venv and install it with: pip install mss")
     exit(1)
 try:
     import websockets
 except ImportError:
-    print("Error: 'websockets' library not found. Install it with: pip3 install --user websockets")
+    print("Error: 'websockets' library not found. Activate your venv and install it with: pip install websockets")
     exit(1)
 
 # ================== SETTINGS ==================
@@ -114,7 +114,7 @@ async def ws_handler():
 def main():
     # Check for OpenCV installation
     if cv2.__version__ is None:
-        print("Error: OpenCV not found. Install it with: pip3 install --user opencv-python")
+        print("Error: OpenCV not found. Activate your venv and install it with: pip install opencv-python")
         exit(1)
     try:
         asyncio.run(ws_handler())
@@ -124,6 +124,7 @@ def main():
         print(f"Main error: {e}")
 
 if __name__ == "__main__":
-    print("Starting screen capture client on ROSA MOS Linux...")
-    print("Ensure dependencies are installed with: pip3 install --user mss opencv-python websockets numpy asyncio")
+    print("Starting screen capture client on ROSA MOS Linux (using venv)...")
+    print("Ensure your virtual environment is activated and dependencies are installed with:")
+    print("pip install mss opencv-python websockets numpy")
     main()
